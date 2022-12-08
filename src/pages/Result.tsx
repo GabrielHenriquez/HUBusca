@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  TituloLogo,
+  CaracteresWhite,
   Main,
   ProfileImage,
   Name,
@@ -12,6 +14,8 @@ import {
 export default function Result() {
   return (
     <Main>
+
+      <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
 
       <ProfileImage
         source={{

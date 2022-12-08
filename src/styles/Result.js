@@ -7,6 +7,19 @@ export const Main = styled.View`
   height: 100%;
 `;
 
+export const TituloLogo = styled.Text`
+  color: #6190C8;
+  font-size: 60px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 50px;
+  letter-spacing: -1px;
+`;
+
+export const CaracteresWhite = styled.Text`
+  color: #FFF !important;
+`;
+
 export const ProfileImage = styled.Image`
   width: 240px;
   height: 240px;
@@ -19,14 +32,14 @@ export const Name = styled.Text`
   font-size: 28px;
   font-weight: bold;
   color: #FFF;
-  margin-bottom: 15px;
+  margin-bottom: 13px;
 `;
 
 export const User = styled.Text`
   font-size: 20px;
   opacity: 0.7;
   color: #FFF;
-  margin-bottom: 15px;
+  margin-bottom: 13px;
 `;
 
 export const AreaLocation = styled.View`
