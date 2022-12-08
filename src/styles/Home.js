@@ -14,10 +14,10 @@ export const AreaInputs = styled.View`
 
 export const TituloLogo = styled.Text`
   color: #6190C8;
-  font-size: 48px;
+  font-size: 60px;
   font-weight: bold;
   font-style: italic;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   letter-spacing: -1px;
 `;
 
@@ -34,7 +34,7 @@ export const InputUsuario = styled.TextInput`
   border-radius: 10px;
   color: #6190C8;
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 22px;
   padding: 10px;
 
 `;
