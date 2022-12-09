@@ -17,7 +17,7 @@ export const TitleLogo = styled.Text`
   display: flex;
   align-self: flex-end;
   color: #6190C8;
-  font-size: 30px;
+  font-size: 33px;
   font-weight: bold;
   font-style: italic;
   margin-top: 35px;
@@ -30,8 +30,8 @@ export const CaracteresWhite = styled.Text`
 `;
 
 export const ProfileImage = styled.Image`
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
   border: 4px solid #6A98CE;
   border-radius: 300px;
   margin-bottom: 15px;
@@ -54,13 +54,13 @@ export const User = styled.Text`
 export const AreaLocation = styled.View`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 7px;
 `;
 
 export const IconMap = styled.Image`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   margin-right: 10px;
 `;
 
@@ -85,8 +85,8 @@ export const AreaNetwork = styled.View`
 `;
 
 export const IconUsers = styled.Image`
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
   margin-right: 10px;
 `;
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView, Linking } from "react-native";
 import {
   Main,
@@ -28,41 +28,51 @@ import {
 
 } from "../styles/Profile";
 
-export default function Profile() {
-  return (
+import { UserContext } from "../contexts/UserContext";
 
-    <ScrollView>
+export default function Profile() {
+
+  // States or Contexts
+  const { user, repository } = useContext(UserContext)
+
+  // Aplication
+  return (
+    <ScrollView style={{ backgroundColor: '#242937' }}>
       <Main>
         <Content>
           <TitleLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TitleLogo>
 
           <ProfileImage
             source={{
-              uri: 'https://avatars.githubusercontent.com/u/95993363?v=4',
+              uri: `${user.avatar_url}`,
             }}
           />
 
-          <Name>Gabriel Henrique</Name>
+          <Name>{user.name}</Name>
 
-          <User>GabrielHenriquez</User>
+          <User>{user.login}</User>
 
           <AreaLocation>
             <IconMap source={require('../../assets/mapa.png')} />
-            <Location>Recife-PE</Location>
+            <Location>{user.location ? user.location : 'Sem localização'}</Location>
           </AreaLocation>
 
-          <ID>ID: 2718848</ID>
+          <ID>ID: {user.id}</ID>
 
           <AreaNetwork>
             <IconUsers source={require('../../assets/group.png')} />
-            <Network>840 seguidores / 445 seguindo</Network>
+            <Network>{user.following} seguidores / {user.following} seguindo</Network>
           </AreaNetwork>
 
-          <Repositories>75 Repositórios públicos</Repositories>
+          <Repositories>{user.public_repos} Repositórios públicos</Repositories>
 
           <Line />
 
           <TitleAreaRepositories>Repositórios</TitleAreaRepositories>
+
+          {repository && repository.map(repo => (
+            console.log(repo.name)
+          ))}
 
           <AreaRepositorie>
             <TitleRepositorie
@@ -71,47 +81,6 @@ export default function Profile() {
               }}>
               app - movie - react
             </TitleRepositorie>
-
-            <Description>
-              Aplicação simples de resumos sobre filmes
-              e que pode salvar localmente os filmes favoritos
-              para praticar consumo de API e praticar o JavaScript.
-            </Description>
-
-            <AreaLanguage>
-              <Circle />
-              <Language>JavaScript</Language>
-            </AreaLanguage>
-
-            <Date>Criado em 20/05/2022</Date>
-            <Date>Último push em 23/05/2022</Date>
-          </AreaRepositorie>
-
-          <AreaRepositorie>
-            <TitleRepositorie>React Map</TitleRepositorie>
-
-            <Description>
-              Aplicação simples de resumos sobre filmes
-              e que pode salvar localmente os filmes favoritos
-              para praticar consumo de API e praticar o JavaScript,
-              os filmes favoritos,  os filmes favoritos,  os filmes favoritos.
-              Aplicação simples de resumos sobre filmes
-              e que pode salvar localmente os filmes favoritos
-              para praticar consumo de API e praticar o JavaScript,
-              os filmes favoritos,  os filmes favoritos,  os filmes favoritos.
-            </Description>
-
-            <AreaLanguage>
-              <Circle />
-              <Language>JavaScript</Language>
-            </AreaLanguage>
-
-            <Date>Criado em 20/05/2022</Date>
-            <Date>Último push em 23/05/2022</Date>
-          </AreaRepositorie>
-
-          <AreaRepositorie>
-            <TitleRepositorie>app-movie-react</TitleRepositorie>
 
             <Description>
               Aplicação simples de resumos sobre filmes

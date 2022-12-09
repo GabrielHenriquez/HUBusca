@@ -19,7 +19,7 @@ export default function Home() {
 
   // States
   const [userInput, setUserInput] = useState('');
-  const { getUser } = useContext(UserContext);
+  const { getUser, getRepositories } = useContext(UserContext);
 
   // Functions
   async function handleUser() {
@@ -27,8 +27,15 @@ export default function Home() {
 
     api.get(`/users/${userInput}`)
       .then(async (response) => {
-        const { avatar_url, name, login, location } = response.data
-        await getUser({ avatar_url, name, login, location })
+        const { avatar_url, name, login, location, id, followers, following, public_repos } = response.data
+        await getUser({ avatar_url, name, login, location, id, followers, following, public_repos })
+      })
+      .catch((error) => console.log('ERRO OCORRIDO', error))
+
+    api.get(`/users/${userInput}/repos`)
+      .then(async (response) => {
+        const res = response.data
+        await getRepositories(res)
       })
       .catch((error) => console.log('ERRO OCORRIDO', error))
   };

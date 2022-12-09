@@ -1,7 +1,9 @@
 import React, {useContext} from "react";
 import AppRoutes from "./app.routes";
+import HomeRoutes from "./home.routes";
+
 import { UserContext } from "../contexts/UserContext";
-import Home from "../pages/Home";
+
 
 export default function Routes() {
   // States or Contexts
@@ -9,6 +11,6 @@ export default function Routes() {
 
   // Aplication
   return (
-      findUser ? <AppRoutes/> : <Home />
+      findUser ? <AppRoutes/> : <HomeRoutes />
   )
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "../pages/Home"
 import Result from "../pages/Result";
 import Profile from "../pages/Profile";
 import Historic from "../pages/Historic";
@@ -15,11 +14,7 @@ export default function AppRoutes() {
         name="Result"
         component={Result}
         options={{
-          title: 'Voltar',
-          headerStyle: {
-            backgroundColor: '#1d1d2e'
-          },
-          headerTintColor: '#FFF'
+          headerShown: false
         }}
       />
 
@@ -27,11 +22,7 @@ export default function AppRoutes() {
         name="Profile"
         component={Profile}
         options={{
-          title: 'Voltar',
-          headerStyle: {
-            backgroundColor: '#1d1d2e'
-          },
-          headerTintColor: '#FFF'
+          headerShown: false
         }}
       />
       <Stack.Screen

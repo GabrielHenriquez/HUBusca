@@ -1,5 +1,19 @@
 import styled from 'styled-components/native';
 
+export const AreaButton = styled.View`
+  width: 100%;
+  background-color: #CCC;
+`;
+
+export const ButtonBack = styled.TouchableOpacity`
+  width: 100%;
+  background-color: #CCC;
+`;
+
+export const TextButton = styled.Text`
+  color: #FFF !important;
+`;
+
 export const Main = styled.View`
   background-color: #242937;
   justify-content: center;
@@ -46,6 +60,7 @@ export const AreaLocation = styled.View`
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
+  align-items: baseline;
 `;
 
 export const Location = styled.Text`

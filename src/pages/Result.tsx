@@ -1,5 +1,11 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
 import {
+  AreaButton,
+  ButtonBack,
+  TextButton,
   TituloLogo,
   CaracteresWhite,
   Main,
@@ -12,21 +18,26 @@ import {
 } from "../styles/Result";
 
 import { UserContext } from "../contexts/UserContext";
+import { TouchableOpacity } from "react-native";
 
 export default function Result() {
 
   // States or Contexts
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext)
+  const navigation = useNavigation<NativeStackNavigationProp>()
 
+  // Aplication
   return (
     <Main>
       <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
 
-      <ProfileImage
-        source={{
-          uri: `${user.avatar_url}.`,
-        }}
-      />
+      <TouchableOpacity  onPress={() => navigation.navigate('Profile')}>
+        <ProfileImage
+          source={{
+            uri: `${user.avatar_url}.`,
+          }} />
+      </TouchableOpacity>
+
 
       <Name>{user.name}</Name>
       <User>{user.login}</User>
