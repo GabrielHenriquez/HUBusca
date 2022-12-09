@@ -14,7 +14,6 @@ import {
 export default function Result() {
   return (
     <Main>
-
       <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
 
       <ProfileImage
@@ -30,8 +29,6 @@ export default function Result() {
         <IconMap source={require('../../assets/mapa.png')} />
         <Location>Recife-PE</Location>
       </AreaLocation>
-
-
     </Main>
   )
 }

@@ -12,7 +12,7 @@ export const TituloLogo = styled.Text`
   font-size: 60px;
   font-weight: bold;
   font-style: italic;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   letter-spacing: -1px;
 `;
 
