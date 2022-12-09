@@ -20,7 +20,7 @@ export default function Home() {
   const [userInput, setUserInput] = useState('');
 
   // Functions
-  const getUser = () => {
+  const handleUser = () => {
     api.get(`/users/${userInput}`)
       .then((response) => setUser(response.data))
       .catch((error) => console.log('ERRO OCORRIDO', error))
@@ -43,7 +43,7 @@ export default function Home() {
           value={userInput}
         />
 
-        <ButtonBuscar onPress={() => getUser()}>
+        <ButtonBuscar onPress={() => handleUser()}>
           <TextButton>Buscar</TextButton>
         </ButtonBuscar>
 

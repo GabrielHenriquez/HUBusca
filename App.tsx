@@ -1,5 +1,5 @@
-import { Text, View, StatusBar } from 'react-native';
-import { Main } from '../HUBusca/src/styles/App'
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import Routes from './src/routes';
 
@@ -9,10 +9,10 @@ import Profile from './src/pages/Profile';
 
 export default function App() {
   return (
-    <>
+    <NavigationContainer>
       <StatusBar backgroundColor='#242937' barStyle='light-content' translucent={false} />
-      <Home />
-    </>
+      <Routes />
+    </NavigationContainer>
   );
 }
 

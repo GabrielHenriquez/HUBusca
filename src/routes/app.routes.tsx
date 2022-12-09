@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Home from "../pages/Home"
-import Main from "../pages/Result";
+import Result from "../pages/Result";
 import Profile from "../pages/Profile";
 import Historic from "../pages/Historic";
 
@@ -15,16 +15,13 @@ export default function AppRoutes() {
         name="Home"
         component={Home}
         options={{
-          title: 'Voltar',
-          headerStyle: {
-            backgroundColor: '#1d1d2e'
-          },
-          headerTintColor: '#FFF'
+          headerShown: false
         }}
       />
+
       <Stack.Screen
-        name="Main"
-        component={Main}
+        name="Result"
+        component={Result}
         options={{
           title: 'Voltar',
           headerStyle: {
@@ -33,6 +30,7 @@ export default function AppRoutes() {
           headerTintColor: '#FFF'
         }}
       />
+
       <Stack.Screen
         name="Profile"
         component={Profile}
