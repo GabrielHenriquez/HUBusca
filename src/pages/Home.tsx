@@ -11,14 +11,19 @@ import {
   ButtonHistorico,
 } from "../styles/Home";
 
+import api from "../services/api";
+
 export default function Home() {
 
   // States
+  const [user, setUser] = useState('');
   const [userInput, setUserInput] = useState('');
 
   // Functions
   const getUser = () => {
-    console.log('clicou')
+    api.get(`/users/${userInput}`)
+      .then((response) => setUser(response.data))
+      .catch((error) => console.log('ERRO OCORRIDO', error))
   };
 
   // Aplication
