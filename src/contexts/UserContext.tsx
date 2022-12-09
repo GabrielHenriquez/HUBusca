@@ -2,6 +2,7 @@ import React, { useState, ReactNode, createContext } from "react";
 
 type UserContextData = {
   user: UserProps;
+  users: UsersProps;
   repository: RepositoriesProps;
   getUser: ({ avatar_url, name, login, location }: UserProps) => Promise<void>;
   getRepositories: (res: []) => Promise<void>;
@@ -17,6 +18,13 @@ type UserProps = {
   following: number;
   public_repos: number;
 }
+
+type UsersProps = [{
+  avatar_url: string;
+  name: string;
+  login: string;
+  location: string;
+}];
 
 type RepositoriesProps = [{
   html_url: string;
@@ -47,7 +55,9 @@ export default function UserProvider({ children }: UserProviderProps) {
     public_repos: 0,
   })
 
-  const [repository, setRepository] = useState<RepositoriesProps | []>([])
+  const [users, setUsers] = useState<UsersProps | []>([]);
+
+  const [repository, setRepository] = useState<RepositoriesProps | []>([]);
 
   // Functions
   const addZero = (number: number) => {
@@ -67,13 +77,28 @@ export default function UserProvider({ children }: UserProviderProps) {
       public_repos,
     })
 
-  };
+    const obj = {
+      avatar_url,
+      name,
+      login,
+      location,
+    }
+
+    if (users.length > 0) {
+      users.forEach((user) => {
+        if (obj.name === user.name) {
+          return
+        } 
+      })
+    };
+    
+    setUsers([...users, obj]);
+  }
 
   const getRepositories = async (res: []) => {
     const arr: React.SetStateAction<RepositoriesProps | undefined> | { name: string; description: string; language: string; created_at: string; pushed_at: string; }[] = []
 
     res.map(({ html_url, name, description, language, created_at, pushed_at }) => {
-
       const dataCreate = new Date(created_at);
       const dataPush = new Date(pushed_at);
       const dateFormatedCreate = (addZero(dataCreate.getDate().toString()) + "/" + (addZero(dataCreate.getMonth() + 1).toString()) + "/" + dataCreate.getFullYear());
@@ -96,7 +121,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   // Aplication
   return (
-    <UserContext.Provider value={{ user, getUser, getRepositories, repository }}>
+    <UserContext.Provider value={{ user, getUser, getRepositories, repository, users }}>
       {children}
     </UserContext.Provider>
   )

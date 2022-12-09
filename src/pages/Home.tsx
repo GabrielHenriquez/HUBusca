@@ -23,7 +23,7 @@ export default function Home() {
   // States or Contexts
   const [userInput, setUserInput] = useState('');
 
-  const { getUser, getRepositories } = useContext(UserContext);
+  const { getUser, getRepositories, users } = useContext(UserContext);
 
   const navigation = useNavigation<NativeStackNavigationProp>()
 
@@ -42,6 +42,7 @@ export default function Home() {
         setUserInput('')
       })
       .catch((error) => {
+        console.log('Error users', error)
         if (error.response.status === 404) {
           alert('Usuário não encontrado')
           setUserInput('')
@@ -54,11 +55,18 @@ export default function Home() {
         const res = response.data
         await getRepositories(res)
       })
-      .catch((error) => console.log('ERRO OCORRIDO', error))
+      .catch((error) => console.log('ERROR Repositories', error))
   };
 
   async function handleUserHistoric() {
     navigation.navigate('Historic')
+
+    console.log(users.length)
+    if (users.length > 0) {
+      users.forEach(() => {
+        console.log('')
+      })
+    }
   }
 
   // Aplication

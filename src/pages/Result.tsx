@@ -38,7 +38,6 @@ export default function Result() {
           }} />
       </TouchableOpacity>
 
-
       <Name>{user.name ? user.name : 'Nome vazio'}</Name>
       <User>{user.login}</User>
 
