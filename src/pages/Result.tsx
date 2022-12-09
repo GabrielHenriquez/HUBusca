@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   TituloLogo,
   CaracteresWhite,
@@ -11,23 +11,29 @@ import {
   IconMap
 } from "../styles/Result";
 
+import { UserContext } from "../contexts/UserContext";
+
 export default function Result() {
+
+  // States or Contexts
+  const {user} = useContext(UserContext)
+
   return (
     <Main>
       <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
 
       <ProfileImage
         source={{
-          uri: 'https://avatars.githubusercontent.com/u/95993363?v=4',
+          uri: `${user.avatar_url}.`,
         }}
       />
 
-      <Name>Gabriel Henrique</Name>
-      <User>GabrielHenriqueZ</User>
+      <Name>{user.name}</Name>
+      <User>{user.login}</User>
 
       <AreaLocation>
         <IconMap source={require('../../assets/mapa.png')} />
-        <Location>Recife-PE</Location>
+        <Location>{user.location}</Location>
       </AreaLocation>
     </Main>
   )

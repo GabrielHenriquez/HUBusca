@@ -3,7 +3,8 @@ import api from "../services/api";
 
 type UserContextData = {
   user: UserProps;
-  getUser: ({avatar_url, name, login, location}: UserProps) => Promise<void>
+  getUser: ({ avatar_url, name, login, location }: UserProps) => Promise<void>;
+  findUser: boolean;
 }
 
 type UserProps = {
@@ -28,18 +29,24 @@ export default function UserProvider({ children }: UserProviderProps) {
     login: '',
     location: '',
   })
+  
+  const [findUser, setFindUser] = useState<boolean>(false)
 
   // Functions
-  const getUser = async ({avatar_url, name, login, location}: UserProps) => {
-    console.log(avatar_url);
-    console.log(name);
-    console.log(login);
-    console.log(location);
+  const getUser = async ({ avatar_url, name, login, location }: UserProps) => {
+    setUser({
+      avatar_url,
+      name,
+      login,
+      location
+    })
+
+    setFindUser(true)
   }
 
   // Aplication
   return (
-    <UserContext.Provider value={{ user, getUser }}>
+    <UserContext.Provider value={{ user, getUser, findUser }}>
       {children}
     </UserContext.Provider>
   )

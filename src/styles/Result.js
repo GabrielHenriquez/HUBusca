@@ -45,6 +45,7 @@ export const User = styled.Text`
 export const AreaLocation = styled.View`
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
 `;
 
 export const Location = styled.Text`

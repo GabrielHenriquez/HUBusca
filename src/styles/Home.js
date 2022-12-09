@@ -48,7 +48,7 @@ export const Label = styled.Text`
 export const ButtonBuscar = styled.TouchableOpacity`
   width: 290px;
   height: 45px;
-  background-color: #3B72B2;
+  background-color: #2B5C82;
   border-radius: 10px;
   margin-bottom: 13px;
   display: flex;
