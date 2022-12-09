@@ -1,17 +1,17 @@
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Routes from './src/routes';
+import UserProvider from './src/contexts/UserContext';
 
-import Home from './src/pages/Home';
-import Result from './src/pages/Result';
-import Profile from './src/pages/Profile';
+import Routes from './src/routes';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor='#242937' barStyle='light-content' translucent={false} />
-      <Routes />
+      <UserProvider>
+        <StatusBar backgroundColor='#242937' barStyle='light-content' translucent={false} />
+        <Routes />
+      </UserProvider>
     </NavigationContainer>
   );
 }

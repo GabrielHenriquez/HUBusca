@@ -32,7 +32,7 @@ export const InputUsuario = styled.TextInput`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  color: #6190C8;
+  color: #316098;
   margin-top: 5px;
   margin-bottom: 22px;
   padding: 10px;
@@ -48,7 +48,7 @@ export const Label = styled.Text`
 export const ButtonBuscar = styled.TouchableOpacity`
   width: 290px;
   height: 45px;
-  background-color: #2B5C82;
+  background-color: #3B72B2;
   border-radius: 10px;
   margin-bottom: 13px;
   display: flex;

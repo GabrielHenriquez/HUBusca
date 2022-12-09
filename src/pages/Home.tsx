@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import {
   Main,
   AreaInputs,
@@ -11,18 +11,25 @@ import {
   ButtonHistorico,
 } from "../styles/Home";
 
+import { UserContext } from "../contexts/UserContext";
+
 import api from "../services/api";
 
 export default function Home() {
 
   // States
-  const [user, setUser] = useState('');
   const [userInput, setUserInput] = useState('');
+  const { getUser } = useContext(UserContext);
 
   // Functions
-  const handleUser = () => {
+  async function handleUser() {
+    if (userInput === '') return
+
     api.get(`/users/${userInput}`)
-      .then((response) => setUser(response.data))
+      .then(async (response) => {
+        const { avatar_url, name, login, location } = response.data
+        await getUser({ avatar_url, name, login, location })
+      })
       .catch((error) => console.log('ERRO OCORRIDO', error))
   };
 
@@ -37,7 +44,7 @@ export default function Home() {
 
         <InputUsuario
           placeholder='Ex.: GabrielHenriquez'
-          placeholderTextColor='#6190C8'
+          placeholderTextColor='#3B72B2'
           id='userInput'
           onChangeText={setUserInput}
           value={userInput}
