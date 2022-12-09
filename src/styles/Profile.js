@@ -15,9 +15,9 @@ export const Content = styled.View`
 
 export const TitleLogo = styled.Text`
   display: flex;
-  align-self: flex-end;
+  align-self: center;
   color: #6190C8;
-  font-size: 33px;
+  font-size: 35px;
   font-weight: bold;
   font-style: italic;
   margin-top: 35px;
@@ -39,7 +39,7 @@ export const ProfileImage = styled.Image`
 
 export const Name = styled.Text`
   color: #FFF !important;
-  font-size: 21px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 7px;
 `;
@@ -106,7 +106,7 @@ export const Line = styled.View`
   background-color: #FFF;
   width: 100%;
   height: 4px;
-  margin-top: 35px;
+  margin-top: 30px;
   margin-bottom: 25px;
 `;
 
@@ -118,6 +118,7 @@ export const TitleAreaRepositories = styled.Text`
 `;
 
 export const AreaRepositorie = styled.View`
+ width: 100%;
   border-radius: 10px;
   background-color: #2B5C82;
   padding: 10px;

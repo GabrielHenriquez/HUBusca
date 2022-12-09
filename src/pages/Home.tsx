@@ -43,7 +43,6 @@ export default function Home() {
   // Aplication
   return (
     <Main>
-
       <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
 
       <AreaInputs>
@@ -65,7 +64,6 @@ export default function Home() {
           <TextButton>Histórico</TextButton>
         </ButtonHistorico>
       </AreaInputs>
-
     </Main>
   )
 }

@@ -1,5 +1,4 @@
 import React, { useState, ReactNode, createContext } from "react";
-import api from "../services/api";
 
 type UserContextData = {
   user: UserProps;
@@ -21,11 +20,12 @@ type UserProps = {
 }
 
 type RepositoriesProps = [{
+  html_url: string;
   name: string;
   description: string;
   language: string;
   created_at: string;
-  updated_at: string;
+  pushed_at: string;
 }];
 
 type UserProviderProps = {
@@ -53,6 +53,11 @@ export default function UserProvider({ children }: UserProviderProps) {
   const [findUser, setFindUser] = useState<boolean>(false)
 
   // Functions
+  const addZero = (number: number) => {
+    const validate = number <= 9 ? "0" + number : number
+    return validate
+  };
+
   const getUser = async ({ avatar_url, name, login, location, id, followers, following, public_repos }: UserProps) => {
     setUser({
       avatar_url,
@@ -69,15 +74,23 @@ export default function UserProvider({ children }: UserProviderProps) {
   };
 
   const getRepositories = async (res: []) => {
-    const arr: React.SetStateAction<RepositoriesProps | undefined> | { name: string; description: string; language: string; created_at: string; updated_at: string; }[] = []
+    const arr: React.SetStateAction<RepositoriesProps | undefined> | { name: string; description: string; language: string; created_at: string; pushed_at: string; }[] = []
 
-    res.map(({ name, description, language, created_at, updated_at }) => {
+    res.map(({ html_url, name, description, language, created_at, pushed_at }) => {
+
+      const dataCreate = new Date(created_at);
+      const dataPush = new Date(pushed_at);
+      const dateFormatedCreate = (addZero(dataCreate.getDate().toString()) + "/" + (addZero(dataCreate.getMonth() + 1).toString()) + "/" + dataCreate.getFullYear());
+      const dateFormatedPush = (addZero(dataPush.getDate().toString()) + "/" + (addZero(dataPush.getMonth() + 1).toString()) + "/" + dataPush.getFullYear());
+
+
       const obj = {
+        html_url,
         name,
         description,
         language,
-        created_at,
-        updated_at
+        created_at: dateFormatedCreate,
+        pushed_at: dateFormatedPush
       }
 
       arr.push(obj)

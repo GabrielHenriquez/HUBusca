@@ -71,31 +71,26 @@ export default function Profile() {
           <TitleAreaRepositories>Repositórios</TitleAreaRepositories>
 
           {repository && repository.map(repo => (
-            console.log(repo.name)
+            <AreaRepositorie key={repo.name}>
+              <TitleRepositorie
+                onPress={() => {
+                  Linking.openURL(`${repo.html_url}`);
+                }}>
+                {repo.name}
+              </TitleRepositorie>
+
+              <Description>{repo.description ? repo.description : 'Sem descrição'}</Description>
+
+              <AreaLanguage>
+                <Circle />
+                <Language>{repo.language ? repo.language : 'Sem linguagem'}</Language>
+              </AreaLanguage>
+
+              <Date>Criado em {repo.created_at ? repo.created_at : '--/--/----'}</Date>
+              <Date>Último push em {repo.pushed_at ? repo.pushed_at : '--/--/----'}</Date>
+            </AreaRepositorie>
           ))}
 
-          <AreaRepositorie>
-            <TitleRepositorie
-              onPress={() => {
-                Linking.openURL('https://www.google.com.br');
-              }}>
-              app - movie - react
-            </TitleRepositorie>
-
-            <Description>
-              Aplicação simples de resumos sobre filmes
-              e que pode salvar localmente os filmes favoritos
-              para praticar consumo de API e praticar o JavaScript.
-            </Description>
-
-            <AreaLanguage>
-              <Circle />
-              <Language>JavaScript</Language>
-            </AreaLanguage>
-
-            <Date>Criado em 20/05/2022</Date>
-            <Date>Último push em 23/05/2022</Date>
-          </AreaRepositorie>
 
         </Content>
       </Main>
