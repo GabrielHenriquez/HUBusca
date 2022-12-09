@@ -39,12 +39,12 @@ export default function Result() {
       </TouchableOpacity>
 
 
-      <Name>{user.name}</Name>
+      <Name>{user.name ? user.name : 'Nome vazio'}</Name>
       <User>{user.login}</User>
 
       <AreaLocation>
         <IconMap source={require('../../assets/mapa.png')} />
-        <Location>{user.location}</Location>
+        <Location>{user.location ? user.location : 'Sem localização'}</Location>
       </AreaLocation>
     </Main>
   )

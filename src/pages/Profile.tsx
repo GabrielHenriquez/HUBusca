@@ -63,7 +63,7 @@ export default function Profile() {
             }}
           />
 
-          <Name>{user.name}</Name>
+          <Name>{user.name ? user.name : 'Nome vazio'}</Name>
 
           <User>{user.login}</User>
 

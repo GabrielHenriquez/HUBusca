@@ -2,7 +2,6 @@ import React, { useState, ReactNode, createContext } from "react";
 
 type UserContextData = {
   user: UserProps;
-  findUser: boolean;
   repository: RepositoriesProps;
   getUser: ({ avatar_url, name, login, location }: UserProps) => Promise<void>;
   getRepositories: (res: []) => Promise<void>;
@@ -50,8 +49,6 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   const [repository, setRepository] = useState<RepositoriesProps | []>([])
 
-  const [findUser, setFindUser] = useState<boolean>(false)
-
   // Functions
   const addZero = (number: number) => {
     const validate = number <= 9 ? "0" + number : number
@@ -70,7 +67,6 @@ export default function UserProvider({ children }: UserProviderProps) {
       public_repos,
     })
 
-    setFindUser(true)
   };
 
   const getRepositories = async (res: []) => {
@@ -100,7 +96,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   // Aplication
   return (
-    <UserContext.Provider value={{ user, getUser, findUser, getRepositories, repository }}>
+    <UserContext.Provider value={{ user, getUser, getRepositories, repository }}>
       {children}
     </UserContext.Provider>
   )
