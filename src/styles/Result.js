@@ -39,21 +39,21 @@ export const ProfileImage = styled.Image`
   height: 240px;
   border: 7px solid #6A98CE;
   border-radius: 300px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 `;
 
 export const Name = styled.Text`
   font-size: 28px;
   font-weight: bold;
   color: #FFF;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 `;
 
 export const User = styled.Text`
   font-size: 20px;
   opacity: 0.7;
   color: #FFF;
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 `;
 
 export const AreaLocation = styled.View`

@@ -17,10 +17,10 @@ export const TitleLogo = styled.Text`
   display: flex;
   align-self: center;
   color: #6190C8;
-  font-size: 35px;
+  font-size: 36px;
   font-weight: bold;
   font-style: italic;
-  margin-top: 35px;
+  margin-top: 37px;
   margin-bottom: 35px;
   letter-spacing: -1px;
 `;
@@ -147,10 +147,9 @@ export const AreaLanguage = styled.View`
 `;
 
 export const Circle = styled.View`
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   margin-right: 7px;
-  background-color: yellow;
   border-radius: 18px;
 `;
 

@@ -4,7 +4,6 @@ export const Main = styled.View`
   background-color: #242937;
   justify-content: center;
   align-items: center;
-  width: 100%;
   height: 100%;
 `;
 
@@ -17,7 +16,7 @@ export const TituloLogo = styled.Text`
   font-size: 60px;
   font-weight: bold;
   font-style: italic;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   letter-spacing: -1px;
 `;
 
@@ -27,7 +26,7 @@ export const CaracteresWhite = styled.Text`
 
 export const InputUsuario = styled.TextInput`
   width: 290px;
-  height: 45px;
+  height: 50px;
   background-color: #FFF;
   justify-content: center;
   align-items: center;
@@ -36,18 +35,19 @@ export const InputUsuario = styled.TextInput`
   margin-top: 5px;
   margin-bottom: 22px;
   padding: 10px;
-
+  font-size: 17px;
 `;
 
 export const Label = styled.Text`
-  font-size: 13px;
+  font-size: 14px;
+  padding-left: 2px;
   color: #FFF;
   align-self: flex-start;
 `;
 
 export const ButtonBuscar = styled.TouchableOpacity`
   width: 290px;
-  height: 45px;
+  height: 50px;
   background-color: #2B5C82;
   border-radius: 10px;
   margin-bottom: 13px;
@@ -58,18 +58,15 @@ export const ButtonBuscar = styled.TouchableOpacity`
 
 export const TextButton = styled.Text`
   color: #FFF;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: bold;
 `;
 
 export const ButtonHistorico = styled.TouchableOpacity`
   width: 290px;
-  height: 45px;
+  height: 50px;
   background-color: #2B5C82;
   border-radius: 10px;
-  color: #FFF;
-  font-size: 22px;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;

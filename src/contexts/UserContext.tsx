@@ -83,7 +83,6 @@ export default function UserProvider({ children }: UserProviderProps) {
       const dateFormatedCreate = (addZero(dataCreate.getDate().toString()) + "/" + (addZero(dataCreate.getMonth() + 1).toString()) + "/" + dataCreate.getFullYear());
       const dateFormatedPush = (addZero(dataPush.getDate().toString()) + "/" + (addZero(dataPush.getMonth() + 1).toString()) + "/" + dataPush.getFullYear());
 
-
       const obj = {
         html_url,
         name,
