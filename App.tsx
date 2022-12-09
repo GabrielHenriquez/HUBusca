@@ -11,7 +11,7 @@ export default function App() {
   return (
     <>
       <StatusBar backgroundColor='#242937' barStyle='light-content' translucent={false} />
-      <Profile />
+      <Home />
     </>
   );
 }

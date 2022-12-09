@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Main,
   AreaInputs,
@@ -12,6 +12,16 @@ import {
 } from "../styles/Home";
 
 export default function Home() {
+
+  // States
+  const [userInput, setUserInput] = useState('');
+
+  // Functions
+  const getUser = () => {
+    console.log('clicou')
+  };
+
+  // Aplication
   return (
     <Main>
 
@@ -24,9 +34,11 @@ export default function Home() {
           placeholder='Ex.: GabrielHenriquez'
           placeholderTextColor='#6190C8'
           id='userInput'
+          onChangeText={setUserInput}
+          value={userInput}
         />
 
-        <ButtonBuscar>
+        <ButtonBuscar onPress={() => getUser()}>
           <TextButton>Buscar</TextButton>
         </ButtonBuscar>
 
