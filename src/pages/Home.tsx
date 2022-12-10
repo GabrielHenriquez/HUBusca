@@ -23,7 +23,6 @@ import { UserContext } from "../contexts/UserContext";
 import api from "../services/api";
 
 export default function Home() {
-
   // States or Contexts
   const [userInput, setUserInput] = useState<string>('');
   const [textEmpty, setTextEmpty] = useState<boolean>(false)
@@ -57,6 +56,7 @@ export default function Home() {
           alert('Usuário não encontrado')
           setUserInput('')
           setTextEmpty(false)
+          setLoading(false)
         }
         if (error.response.status === 500) alert('Erro ao fazer a requisição')
       })

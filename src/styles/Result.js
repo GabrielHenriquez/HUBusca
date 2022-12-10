@@ -74,3 +74,9 @@ export const IconMap = styled.Image`
   margin-right: 10px;
 `;
 
+export const ScreenLoading = styled.View`
+  background-color: #242937;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
