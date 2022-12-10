@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import {
   Main,
   Content,
@@ -13,36 +13,46 @@ import {
   AreaLocation,
   IconMap,
   Location,
-  Line
+  TextResultHistoric
 } from "../styles/Historic";
 
-import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../contexts/UserContext";
+
+import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import api from "../services/api";
 
 export default function Historic() {
   // States or Contexts 
-  const users = [
-    {
-      avatar_url: 'https://avatars.githubusercontent.com/u/95993363?v=4',
-      name: 'Gabriel Henrique',
-      login: 'GabrielHenriquez',
-      location: 'Recife-PE'
-    },
-    {
-      avatar_url: 'https://avatars.githubusercontent.com/u/95993363?v=4',
-      name: 'Gabriel Henrique',
-      login: 'GabrielHenriquez',
-      location: 'Recife-PE'
-    },
-    {
-      avatar_url: 'https://avatars.githubusercontent.com/u/95993363?v=4',
-      name: 'Gabriel Henrique',
-      login: 'GabrielHenriquez',
-      location: 'Recife-PE'
-    },
-  ];
+  const { getUser, getRepositories, users } = useContext(UserContext)
+  const usersReverse = users.reverse()
 
   const navigation = useNavigation<NativeStackNavigationProp>()
+
+  // Functions
+  const getInformationUser = (user: string) => {
+    api.get(`/users/${user}`)
+      .then(async (response) => {
+        const { avatar_url, name, login, location, id, followers, following, public_repos } = response.data
+        await getUser({ avatar_url, name, login, location, id, followers, following, public_repos })
+        navigation.navigate('Profile')
+      })
+      .catch((error) => {
+        console.log('Error users', error)
+        if (error.response.status === 404) {
+          alert('Usuário não encontrado')
+        }
+        if (error.response.status === 500) alert('Erro ao fazer a requisição')
+      })
+
+    api.get(`/users/${user}/repos`)
+      .then(async (response) => {
+        const res = response.data
+        await getRepositories(res)
+      })
+      .catch((error) => console.log('ERROR Repositories', error))
+  };
 
   // Aplication
   return (
@@ -52,9 +62,9 @@ export default function Historic() {
           <TitleLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TitleLogo>
           <Title>Usuários pesquisados</Title>
 
-          {users.length > 0 && users.map((user) => (
+          {usersReverse.length > 0 && usersReverse.map((user) => (
             <ContentUsers>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity onPress={() => getInformationUser(user.login)}>
                 <ProfileImage
                   source={{
                     uri: `${user.avatar_url}.`,
@@ -72,6 +82,10 @@ export default function Historic() {
 
             </ContentUsers>
           ))}
+
+          {users.length === 0 && (
+            <TextResultHistoric>Nada encontrado :(</TextResultHistoric>
+          )}
 
         </Content>
       </Main>

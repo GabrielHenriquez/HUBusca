@@ -9,6 +9,7 @@ import {
   ButtonBuscar,
   TextButton,
   ButtonHistorico,
+  ErrorMessage
 } from "../styles/Home";
 
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,8 @@ import api from "../services/api";
 export default function Home() {
 
   // States or Contexts
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState<string>('');
+  const [textEmpty, setTextEmpty] = useState<boolean>(false)
 
   const { getUser, getRepositories, users } = useContext(UserContext);
 
@@ -30,7 +32,7 @@ export default function Home() {
   // Functions
   async function handleUser() {
     if (userInput === '') {
-      alert('Digite um úsuario para realizar a busca!')
+      setTextEmpty(true)
       return
     }
 
@@ -40,6 +42,7 @@ export default function Home() {
         await getUser({ avatar_url, name, login, location, id, followers, following, public_repos })
         navigation.navigate('Result')
         setUserInput('')
+        setTextEmpty(false)
       })
       .catch((error) => {
         console.log('Error users', error)
@@ -60,13 +63,6 @@ export default function Home() {
 
   async function handleUserHistoric() {
     navigation.navigate('Historic')
-
-    console.log(users.length)
-    if (users.length > 0) {
-      users.forEach(() => {
-        console.log('')
-      })
-    }
   }
 
   // Aplication
@@ -85,8 +81,12 @@ export default function Home() {
           value={userInput.trim()}
         />
 
+        {textEmpty && (
+          <ErrorMessage>Digite um usuário para realizar a pesquisa!</ErrorMessage>
+        )}
+
         <ButtonBuscar onPress={() => handleUser()}>
-          <TextButton>Buscar</TextButton>
+          <TextButton>Pesquisar</TextButton>
         </ButtonBuscar>
 
         <ButtonHistorico onPress={() => handleUserHistoric()}>

@@ -25,7 +25,7 @@ export const TitleLogo = styled.Text`
 `;
 
 export const Title = styled.Text`
-  color: #FFF !important;
+  color: #C2CAEB !important;
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
@@ -46,8 +46,8 @@ export const ContentUsers = styled.View`
 `;
 
 export const ProfileImage = styled.Image`
-  width: 70px;
-  height: 70px;
+  width: 72px;
+  height: 72px;
   border: 4px solid #6A98CE;
   border-radius: 300px;
   margin-bottom: 12px;
@@ -86,10 +86,8 @@ export const Location = styled.Text`
   opacity: 0.9;
 `;
 
-export const Line = styled.View`
-  background-color: #FFF;
-  width: 100%;
-  height: 4px;
-  margin-top: 30px;
-  margin-bottom: 25px;
+export const TextResultHistoric = styled.Text`
+  font-size: 27px;
+  color: #CCC;
+  margin-top: 140px;
 `;

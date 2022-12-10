@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, createContext } from "react";
+import React, { useState, ReactNode, createContext, useEffect } from "react";
 
 type UserContextData = {
   user: UserProps;
@@ -84,16 +84,23 @@ export default function UserProvider({ children }: UserProviderProps) {
       location,
     }
 
-    if (users.length > 0) {
-      users.forEach((user) => {
-        if (obj.name === user.name) {
-          return
-        } 
-      })
-    };
-    
     setUsers([...users, obj]);
+    getUsersUniques(obj)
   }
+
+  const getUsersUniques = (objUser: UserProps) => {
+    if (users.length > 0) {
+      const findUserAtArray = users.find((user) => user.name === objUser.name)
+      if (findUserAtArray) {
+        const removeUserAtArray = users.filter((user) => user.login !== findUserAtArray.login)
+        if (removeUserAtArray) setUsers([...users]);
+        users.reverse()
+      } else {
+        setUsers([...users, objUser]);
+        users.reverse()
+      }
+    }
+  };
 
   const getRepositories = async (res: []) => {
     const arr: React.SetStateAction<RepositoriesProps | undefined> | { name: string; description: string; language: string; created_at: string; pushed_at: string; }[] = []

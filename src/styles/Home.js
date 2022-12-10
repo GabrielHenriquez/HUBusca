@@ -72,3 +72,12 @@ export const ButtonHistorico = styled.TouchableOpacity`
   justify-content: center;
 `;
 
+export const ErrorMessage = styled.Text`
+  color: red;
+  font-size: 15px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  padding-left: 2px;
+  font-weight: bold;
+`;
+
