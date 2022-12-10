@@ -47,6 +47,7 @@ export default function Home() {
         const { avatar_url, name, login, location, id, followers, following, public_repos } = response.data
         await getUser({ avatar_url, name, login, location, id, followers, following, public_repos })
         navigation.navigate('Result')
+
         setUserInput('')
         setTextEmpty(false)
         setLoading(false)
@@ -55,6 +56,7 @@ export default function Home() {
         console.log('Error users', error)
         if (error.response.status === 404) {
           alert('Usuário não encontrado')
+          
           setUserInput('')
           setTextEmpty(false)
           setLoading(false)
