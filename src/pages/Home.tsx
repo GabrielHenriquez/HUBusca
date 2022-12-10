@@ -17,6 +17,7 @@ import { ActivityIndicator } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../routes/app.routes";
 
 import { UserContext } from "../contexts/UserContext";
 
@@ -30,7 +31,7 @@ export default function Home() {
 
   const { getUser, getRepositories, users } = useContext(UserContext);
 
-  const navigation = useNavigation<NativeStackNavigationProp>()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   // Functions
   async function handleUser() {
@@ -70,7 +71,9 @@ export default function Home() {
   };
 
   async function handleUserHistoric() {
+    setLoading(true)
     navigation.navigate('Historic')
+    setLoading(false)
   }
 
   // Aplication

@@ -2,6 +2,7 @@ import React, { Context, ContextType, useContext, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../routes/app.routes";
 
 import {
   TituloLogo,
@@ -23,7 +24,7 @@ export default function Result() {
   // States or Contexts
   const { user } = useContext(UserContext)
   const [loading, setLoading] = useState<boolean>()
-  const navigation = useNavigation<NativeStackNavigationProp>()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   //Functions
   const handleProfile = () => {

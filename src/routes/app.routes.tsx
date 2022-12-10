@@ -7,6 +7,13 @@ import Profile from "../pages/Profile";
 import Historic from "../pages/Historic";
 
 const Stack = createNativeStackNavigator()
+// Types
+export type RootStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Historic: undefined;
+  Result: undefined;
+};
 
 export default function AppRoutes() {
   return (

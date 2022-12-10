@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import {
   Main,
   Content,
@@ -21,6 +21,8 @@ import { UserContext } from "../contexts/UserContext";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+import { RootStackParamList } from "../routes/app.routes";
+
 import api from "../services/api";
 
 export default function Historic() {
@@ -28,10 +30,10 @@ export default function Historic() {
   const { getUser, getRepositories, users } = useContext(UserContext)
   const usersReverse = users.reverse()
 
-  const navigation = useNavigation<NativeStackNavigationProp>()
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   // Functions
-  const getInformationUser = (user: string) => {
+  const getInformationUser = (user?: string) => {
     api.get(`/users/${user}`)
       .then(async (response) => {
         const { avatar_url, name, login, location, id, followers, following, public_repos } = response.data
@@ -83,7 +85,7 @@ export default function Historic() {
             </ContentUsers>
           ))}
 
-          {users.length === 0 && (
+          {users.length === 0 as number && (
             <TextResultHistoric>Nada encontrado :(</TextResultHistoric>
           )}
 

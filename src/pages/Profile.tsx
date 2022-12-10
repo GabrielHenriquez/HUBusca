@@ -31,7 +31,6 @@ import {
 import { UserContext } from "../contexts/UserContext";
 
 export default function Profile() {
-
   // States or Contexts
   const { user, repository } = useContext(UserContext)
 

@@ -1,29 +1,31 @@
-import React, { useState, ReactNode, createContext, useEffect } from "react";
+import React, { useState, ReactNode, createContext } from "react";
 
+//Types
 type UserContextData = {
   user: UserProps;
   users: UsersProps;
   repository: RepositoriesProps;
   getUser: ({ avatar_url, name, login, location }: UserProps) => Promise<void>;
   getRepositories: (res: []) => Promise<void>;
+  RootStackParamList: RootStackParamList
 }
 
 type UserProps = {
-  avatar_url: string;
-  name: string;
-  login: string;
-  location: string;
-  id: number;
-  followers: number;
-  following: number;
-  public_repos: number;
+  avatar_url?: string;
+  name?: string;
+  login?: string;
+  location?: string;
+  id?: number;
+  followers?: number;
+  following?: number;
+  public_repos?: number;
 }
 
 type UsersProps = [{
-  avatar_url: string;
-  name: string;
-  login: string;
-  location: string;
+  avatar_url?: string;
+  name?: string;
+  login?: string;
+  location?: string;
 }];
 
 type RepositoriesProps = [{
@@ -42,7 +44,6 @@ type UserProviderProps = {
 export const UserContext = createContext({} as UserContextData);
 
 export default function UserProvider({ children }: UserProviderProps) {
-
   // States
   const [user, setUser] = useState<UserProps>({
     avatar_url: '',
@@ -60,7 +61,7 @@ export default function UserProvider({ children }: UserProviderProps) {
   const [repository, setRepository] = useState<RepositoriesProps | []>([]);
 
   // Functions
-  const addZero = (number: number) => {
+  const addZero = (number: number | string) => {
     const validate = number <= 9 ? "0" + number : number
     return validate
   };
