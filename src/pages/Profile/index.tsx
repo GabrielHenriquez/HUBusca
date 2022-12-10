@@ -26,11 +26,11 @@ import {
   Language,
   Date
 
-} from "../styles/Profile";
+} from "./styles";
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
-export default function Profile() {
+export function Profile() {
   // States or Contexts
   const { user, repository } = useContext(UserContext)
 
@@ -67,14 +67,14 @@ export default function Profile() {
           <User>{user.login}</User>
 
           <AreaLocation>
-            <IconMap source={require('../../assets/mapa.png')} />
+            <IconMap source={require('../../../assets/mapa.png')} />
             <Location>{user.location ? user.location : 'Sem localização'}</Location>
           </AreaLocation>
 
           <ID>ID: {user.id}</ID>
 
           <AreaNetwork>
-            <IconUsers source={require('../../assets/group.png')} />
+            <IconUsers source={require('../../../assets/group.png')} />
             <Network>{user.following} seguidores / {user.following} seguindo</Network>
           </AreaNetwork>
 

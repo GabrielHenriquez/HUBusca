@@ -1,8 +1,8 @@
-import React, { Context, ContextType, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../routes/app.routes";
+import { RootStackParamList } from "../../routes/app.routes";
 
 import {
   TituloLogo,
@@ -14,24 +14,25 @@ import {
   AreaLocation,
   Location,
   IconMap,
-  ScreenLoading
-} from "../styles/Result";
+  ScreenLoading,
+} from "./styles";
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { TouchableOpacity } from "react-native";
 
-export default function Result() {
+export function Result() {
   // States or Contexts
-  const { user } = useContext(UserContext)
-  const [loading, setLoading] = useState<boolean>()
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+  const { user } = useContext(UserContext);
+  const [loading, setLoading] = useState<boolean>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   //Functions
   const handleProfile = () => {
-    setLoading(true)
-    navigation.navigate('Profile')
-    setLoading(false)
-  }
+    setLoading(true);
+    navigation.navigate("Profile");
+    setLoading(false);
+  };
 
   // Aplication
   return (
@@ -42,24 +43,29 @@ export default function Result() {
         </ScreenLoading>
       ) : (
         <Main>
-          <TituloLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TituloLogo>
+          <TituloLogo>
+            HUB<CaracteresWhite>usca</CaracteresWhite>
+          </TituloLogo>
 
           <TouchableOpacity onPress={() => handleProfile()}>
             <ProfileImage
               source={{
                 uri: `${user.avatar_url}.`,
-              }} />
+              }}
+            />
           </TouchableOpacity>
 
-          <Name>{user.name ? user.name : 'Nome vazio'}</Name>
+          <Name>{user.name ? user.name : "Nome vazio"}</Name>
           <User>{user.login}</User>
 
           <AreaLocation>
-            <IconMap source={require('../../assets/mapa.png')} />
-            <Location>{user.location ? user.location : 'Sem localização'}</Location>
+            <IconMap source={require("../../../assets/mapa.png")} />
+            <Location>
+              {user.location ? user.location : "Sem localização"}
+            </Location>
           </AreaLocation>
         </Main>
       )}
     </Main>
-  )
+  );
 }

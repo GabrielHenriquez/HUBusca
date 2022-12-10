@@ -14,26 +14,26 @@ import {
   IconMap,
   Location,
   TextResultHistoric
-} from "../styles/Historic";
+} from "./styles";
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
-import { useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { RootStackParamList } from "../routes/app.routes";
+import { RootStackParamList } from "../../routes/app.routes";
 
-import api from "../services/api";
+import api from "../../services/api";
 
-export default function Historic() {
+export function Historic() {
   // States or Contexts 
   const { getUser, getRepositories, users } = useContext(UserContext)
-  const usersReverse = users.reverse()
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   // Functions
   const getInformationUser = (user?: string) => {
+
     api.get(`/users/${user}`)
       .then(async (response) => {
         const { avatar_url, name, login, location, id, followers, following, public_repos } = response.data
@@ -64,7 +64,7 @@ export default function Historic() {
           <TitleLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TitleLogo>
           <Title>Usuários pesquisados</Title>
 
-          {usersReverse.length > 0 && usersReverse.map((user) => (
+          {users.length > 0 && users.map((user) => (
             <ContentUsers>
               <TouchableOpacity onPress={() => getInformationUser(user.login)}>
                 <ProfileImage
@@ -78,7 +78,7 @@ export default function Historic() {
               <User>{user.login}</User>
 
               <AreaLocation>
-                <IconMap source={require('../../assets/mapa.png')} />
+                <IconMap source={require('../../../assets/mapa.png')} />
                 <Location>{user.location ? user.location : 'Sem localização'}</Location>
               </AreaLocation>
 

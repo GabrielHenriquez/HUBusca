@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-export const Main = styled.View`
+export const Main = styled.SafeAreaView`
   background-color: #242937;
   justify-content: center;
   align-items: center;

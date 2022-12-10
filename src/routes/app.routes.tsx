@@ -1,12 +1,11 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "../pages/Home";
-import Result from "../pages/Result";
-import Profile from "../pages/Profile";
-import Historic from "../pages/Historic";
+import { Home } from "../pages/Home";
+import { Result } from "../pages/Result";
+import { Profile } from "../pages/Profile";
+import { Historic } from "../pages/Historic";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
 // Types
 export type RootStackParamList = {
   Home: undefined;
@@ -22,7 +21,7 @@ export default function AppRoutes() {
         name="Home"
         component={Home}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
 
@@ -30,7 +29,7 @@ export default function AppRoutes() {
         name="Result"
         component={Result}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
 
@@ -38,7 +37,7 @@ export default function AppRoutes() {
         name="Profile"
         component={Profile}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
 
@@ -46,10 +45,9 @@ export default function AppRoutes() {
         name="Historic"
         component={Historic}
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
-  )
+  );
 }
-

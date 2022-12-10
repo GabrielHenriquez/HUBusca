@@ -11,19 +11,19 @@ import {
   ButtonHistorico,
   ErrorMessage,
   ScreenLoading,
-} from "../styles/Home";
+} from "./styles";
 
 import { ActivityIndicator } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../routes/app.routes";
+import { RootStackParamList } from "../../routes/app.routes";
 
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
-import api from "../services/api";
+import api from "../../services/api";
 
-export default function Home() {
+export function Home() {
   // States or Contexts
   const [userInput, setUserInput] = useState<string>('');
   const [textEmpty, setTextEmpty] = useState<boolean>(false)
@@ -69,12 +69,17 @@ export default function Home() {
         const res = response.data
         await getRepositories(res)
       })
-      .catch((error) => console.log('ERROR Repositories', error))
+      .catch((error) => {
+        alert('Limite de requisição excedido.')
+        setTextEmpty(false)
+        setLoading(false)
+      })
   };
 
   async function handleUserHistoric() {
     setLoading(true)
     navigation.navigate('Historic')
+    setTextEmpty(false)
     setLoading(false)
   }
 
@@ -95,7 +100,6 @@ export default function Home() {
             <InputUsuario
               placeholder='Ex.: GabrielHenriquez'
               placeholderTextColor='#3B72B2'
-              id='userInput'
               onChangeText={setUserInput}
               value={userInput.trim()}
             />

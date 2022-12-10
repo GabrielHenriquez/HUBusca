@@ -3,11 +3,10 @@ import React, { useState, ReactNode, createContext } from "react";
 //Types
 type UserContextData = {
   user: UserProps;
-  users: UsersProps;
-  repository: RepositoriesProps;
+  users: UsersProps[];
+  repository: RepositoriesProps[];
   getUser: ({ avatar_url, name, login, location }: UserProps) => Promise<void>;
   getRepositories: (res: []) => Promise<void>;
-  RootStackParamList: RootStackParamList
 }
 
 type UserProps = {
@@ -21,21 +20,21 @@ type UserProps = {
   public_repos?: number;
 }
 
-type UsersProps = [{
+type UsersProps = {
   avatar_url?: string;
   name?: string;
   login?: string;
   location?: string;
-}];
+};
 
-type RepositoriesProps = [{
+type RepositoriesProps = {
   html_url: string;
   name: string;
   description: string;
   language: string;
   created_at: string;
   pushed_at: string;
-}];
+};
 
 type UserProviderProps = {
   children: ReactNode,
@@ -56,9 +55,9 @@ export default function UserProvider({ children }: UserProviderProps) {
     public_repos: 0,
   })
 
-  const [users, setUsers] = useState<UsersProps | []>([]);
+  const [users, setUsers] = useState<UsersProps[]>([]);
 
-  const [repository, setRepository] = useState<RepositoriesProps | []>([]);
+  const [repository, setRepository] = useState<RepositoriesProps[]>([]);
 
   // Functions
   const addZero = (number: number | string) => {
@@ -87,24 +86,26 @@ export default function UserProvider({ children }: UserProviderProps) {
 
     setUsers([...users, obj]);
     getUsersUniques(obj)
+
   }
 
-  const getUsersUniques = (objUser: UserProps) => {
+  const getUsersUniques = (objUser: UsersProps) => {
     if (users.length > 0) {
       const findUserAtArray = users.find((user) => user.name === objUser.name)
       if (findUserAtArray) {
         const removeUserAtArray = users.filter((user) => user.login !== findUserAtArray.login)
-        if (removeUserAtArray) setUsers([...users]);
-        users.reverse()
+        if (removeUserAtArray){
+          setUsers([...removeUserAtArray]);
+          setUsers([...users, objUser])
+        } 
       } else {
         setUsers([...users, objUser]);
-        users.reverse()
       }
     }
   };
 
   const getRepositories = async (res: []) => {
-    const arr: React.SetStateAction<RepositoriesProps | undefined> | { name: string; description: string; language: string; created_at: string; pushed_at: string; }[] = []
+    const arr: RepositoriesProps[] = []
 
     res.map(({ html_url, name, description, language, created_at, pushed_at }) => {
       const dataCreate = new Date(created_at);
