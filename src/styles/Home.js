@@ -81,3 +81,10 @@ export const ErrorMessage = styled.Text`
   font-weight: bold;
 `;
 
+export const ScreenLoading = styled.View`
+  background-color: #242937;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
