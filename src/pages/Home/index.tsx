@@ -100,6 +100,7 @@ export function Home() {
     setLoading(true);
     navigation.navigate("Historic");
     setTextEmpty(false);
+    setUserInput('')
     setLoading(false);
   }
 
