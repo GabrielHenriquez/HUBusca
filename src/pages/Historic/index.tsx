@@ -33,8 +33,7 @@ export function Historic() {
   const { getUser, getRepositories } = useContext(UserContext);
   const [users, setUsers] = useState<UsersProps[]>([]);
 
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   // Functions
   const getInformationUser = async (user?: string) => {
@@ -83,7 +82,7 @@ export function Historic() {
   };
 
   const getUsers = async () => {
-    const jsonValue = await AsyncStorage.getItem("@users");
+    const jsonValue = (await AsyncStorage.getItem("@users")) || "{}";
     const arrUsers = JSON.parse(jsonValue);
 
     if (arrUsers === null) return;

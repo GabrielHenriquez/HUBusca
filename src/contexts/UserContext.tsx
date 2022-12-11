@@ -55,9 +55,6 @@ export default function UserProvider({ children }: UserProviderProps) {
     public_repos: 0,
   });
 
-  //const [usersAsync, setUsersAsync] = useState<UsersProps[]>([]);
-  //let usersAsync: UserProps[] = [];
-
   const [repository, setRepository] = useState<RepositoriesProps[]>([]);
 
   // Functions
@@ -99,7 +96,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   const setUsersAsyncStorage = async (objUser: UsersProps) => {
     if (objUser) {
-      const response = await AsyncStorage.getItem("@users");
+      const response = await AsyncStorage.getItem("@users") || '{}';
       const res = JSON.parse(response);
 
       let usersInToAsync: any[] = [];
@@ -147,7 +144,7 @@ export default function UserProvider({ children }: UserProviderProps) {
         } else {
           let userAsync = [];
 
-          const response = await AsyncStorage.getItem("@users");
+          const response = await AsyncStorage.getItem("@users") || '{}';
           const res = JSON.parse(response);
 
           if (res === null) {

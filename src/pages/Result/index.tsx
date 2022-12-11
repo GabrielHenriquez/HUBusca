@@ -23,9 +23,10 @@ import { UserContext } from "../../contexts/UserContext";
 export function Result() {
   // States or Contexts
   const { user } = useContext(UserContext);
+
   const [loading, setLoading] = useState<boolean>();
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   //Functions
   const handleProfile = () => {

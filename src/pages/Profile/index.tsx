@@ -41,7 +41,11 @@ export function Profile() {
     if (language === "C#") return { backgroundColor: "#178600" };
     if (language === "CSS") return { backgroundColor: "#815db6" };
     if (language === "PHP") return { backgroundColor: "#5a69a5" };
-    if (language === "Python") return { backgroundColor: "#d32418" };
+    if (language === "GO") return { backgroundColor: "#8d1748" };
+    if (language === "C++") return { backgroundColor: "#0cf351" };
+    if (language === "Shell") return { backgroundColor: "#251047" };
+    if (language === "C") return { backgroundColor: "#c441c9" };
+    if (language === "Ruby") return { backgroundColor: "#7fb12f" };
   };
 
   // Aplication
