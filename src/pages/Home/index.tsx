@@ -90,7 +90,7 @@ export function Home() {
         await getRepositories(res);
       })
       .catch((error) => {
-        alert("Limite de requisição excedido.");
+        if (error.response.status === 500) alert("Erro ao fazer a requisição");
         setTextEmpty(false);
         setLoading(false);
       });
