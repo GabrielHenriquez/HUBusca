@@ -57,14 +57,14 @@ export const Name = styled.Text`
   color: #FFF !important;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 `;
 
 export const User = styled.Text`
   color: #FFF !important;
   font-size: 16px;
   opacity: 0.7;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 `;
 
 export const AreaLocation = styled.View`

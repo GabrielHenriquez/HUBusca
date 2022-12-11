@@ -29,7 +29,7 @@ export function Home() {
   const [textEmpty, setTextEmpty] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const { getUser, getRepositories, users } = useContext(UserContext);
+  const { getUser, getRepositories } = useContext(UserContext);
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
