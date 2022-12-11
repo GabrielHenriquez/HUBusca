@@ -94,7 +94,6 @@ export default function UserProvider({ children }: UserProviderProps) {
       location,
     };
 
-    //setUsersAsync([...usersAsync, obj]);
     setUsersAsyncStorage(obj);
   };
 
@@ -103,7 +102,6 @@ export default function UserProvider({ children }: UserProviderProps) {
       const response = await AsyncStorage.getItem("@users");
       const res = JSON.parse(response);
 
-      //console.log('RESPONSE',res)
       let usersInToAsync: any[] = [];
 
       if (res === null || res.length === 0) {

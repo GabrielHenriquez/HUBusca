@@ -77,12 +77,12 @@ export function Historic() {
         const res = response.data;
         await getRepositories(res);
       })
-      .catch((error) => console.log("ERROR Repositories", error));
+      .catch((error) => {
+        if (error.response.status === 500) alert("Erro ao fazer a requisição");
+      })
   };
 
   const getUsers = async () => {
-    //await AsyncStorage.clear();
-
     const jsonValue = await AsyncStorage.getItem("@users");
     const arrUsers = JSON.parse(jsonValue);
 
