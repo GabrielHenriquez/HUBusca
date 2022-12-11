@@ -68,5 +68,5 @@ export const Location = styled.Text`
 
 export const AreaUsers = styled.View`
   width: 100%;
-  height: 100%;
+  margin-bottom: 65px;
 `;
