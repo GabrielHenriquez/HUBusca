@@ -82,10 +82,10 @@ export function Historic() {
   };
 
   const getUsers = async () => {
-    const jsonValue = (await AsyncStorage.getItem("@users")) || "{}";
+    const jsonValue = (await AsyncStorage.getItem("@users")) || "[]";
     const arrUsers = JSON.parse(jsonValue);
 
-    if (arrUsers === null) return;
+    if (arrUsers === null || arrUsers.length === 0) return;
     arrUsers.reverse();
     setUsers(arrUsers);
   };
@@ -188,6 +188,7 @@ const style = StyleSheet.create({
   TextResultHistoric: {
     fontSize: 27,
     color: "#CCC",
-    marginTop: 140
+    marginTop: 140,
+    marginBottom: 95,
   }
 });
