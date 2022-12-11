@@ -18,19 +18,6 @@ Here are the technologies used in this project.
 * Styled-components 5.3.6
 * asyncStorage 1.17.11
 
-## Services Used
-
-* Github
-* Heroku
-
-## Ruby Gems
-
-* Devise
-* Bootstrap
-* Kaminari
-* Select2
-* Cancancan
-
 
 ## Getting started
 
