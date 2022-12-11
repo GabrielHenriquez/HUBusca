@@ -19,7 +19,6 @@ export const CaracteresWhite = styled.Text`
 
 export const ButtonProfile = styled.TouchableOpacity`
   width: 100%;
-  height: 100%;
 `;
 
 export const AreaInformations = styled.View`
@@ -65,4 +64,9 @@ export const Location = styled.Text`
   color: #FFF !important;
   font-size: 15px;
   opacity: 0.9;
+`;
+
+export const AreaUsers = styled.View`
+  width: 100%;
+  height: 100%;
 `;

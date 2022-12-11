@@ -17,6 +17,7 @@ import {
   AreaLocation,
   IconMap,
   Location,
+  AreaUsers
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -115,45 +116,49 @@ export function Historic() {
             Usuários pesquisados
           </Animatable.Text>
 
-          {users.length > 0 &&
-            users.map((user) => (
-              <ButtonProfile
-                key={user.login}
-                onPress={() => getInformationUser(user.login)}
-              >
-                <Animatable.View
-                  animation="fadeInUp"
-                  delay={900}
-                  style={style.ContentUsers}
+          <AreaUsers>
+            {users.length > 0 &&
+              users.map((user) => (
+                <ButtonProfile
+                  key={user.login}
+                  onPress={() => getInformationUser(user.login)}
                 >
-                  <ProfileImage
-                    source={{
-                      uri: `${user.avatar_url}.`,
-                    }}
-                  />
+                  <Animatable.View
+                    animation="fadeInUp"
+                    delay={900}
+                    style={style.ContentUsers}
+                  >
+                    <ProfileImage
+                      source={{
+                        uri: `${user.avatar_url}.`,
+                      }}
+                    />
 
-                  <AreaInformations>
-                    <Name>{user.name ? user.name : "Nome vazio"}</Name>
+                    <AreaInformations>
+                      <Name>{user.name ? user.name : "Nome vazio"}</Name>
 
-                    <User>{user.login}</User>
+                      <User>{user.login}</User>
 
-                    <AreaLocation>
-                      <IconMap source={require("../../../assets/mapa.png")} />
-                      <Location>
-                        {user.location ? user.location : "Sem localização"}
-                      </Location>
-                    </AreaLocation>
-                  </AreaInformations>
-                </Animatable.View>
-              </ButtonProfile>
-            ))}
+                      <AreaLocation>
+                        <IconMap source={require("../../../assets/mapa.png")} />
+                        <Location>
+                          {user.location ? user.location : "Sem localização"}
+                        </Location>
+                      </AreaLocation>
+                    </AreaInformations>
+                  </Animatable.View>
+                </ButtonProfile>
+              ))}
+          </AreaUsers>
 
           {users.length === (0 as number) && (
             <Animatable.Text
-            animation="fadeInUp"
-            delay={900}
-            style={style.TextResultHistoric}
-            >Nada encontrado :(</Animatable.Text>
+              animation="fadeInUp"
+              delay={900}
+              style={style.TextResultHistoric}
+            >
+              Nada encontrado :(
+            </Animatable.Text>
           )}
         </Content>
       </Main>
@@ -190,5 +195,5 @@ const style = StyleSheet.create({
     color: "#CCC",
     marginTop: 140,
     marginBottom: 95,
-  }
+  },
 });
