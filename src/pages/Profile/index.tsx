@@ -36,12 +36,13 @@ export function Profile() {
     if (language === "JavaScript") return { backgroundColor: "#f1e05a" };
     if (language === "Java") return { backgroundColor: "#b07219" };
     if (language === "HTML") return { backgroundColor: "#e34c26" };
+    if (language === "Python") return { backgroundColor: "#3634c5" };
     if (language === "Vue") return { backgroundColor: "#47c58c" };
     if (language === "Dart") return { backgroundColor: "#09c4ba" };
     if (language === "C#") return { backgroundColor: "#178600" };
     if (language === "CSS") return { backgroundColor: "#815db6" };
     if (language === "PHP") return { backgroundColor: "#5a69a5" };
-    if (language === "GO") return { backgroundColor: "#8d1748" };
+    if (language === "Go") return { backgroundColor: "#8d1748" };
     if (language === "C++") return { backgroundColor: "#0cf351" };
     if (language === "Shell") return { backgroundColor: "#251047" };
     if (language === "C") return { backgroundColor: "#c441c9" };
@@ -102,7 +103,7 @@ export function Profile() {
 
           <Animatable.View
             animation="fadeInLeft"
-            delay={760}
+            delay={790}
             style={style.Line}
           />
 
@@ -150,6 +151,16 @@ export function Profile() {
                 </Date>
               </Animatable.View>
             ))}
+
+          {repository.length === (0 as number) && (
+            <Animatable.Text
+              animation="fadeInUp"
+              delay={900}
+              style={style.TextResultRepository}
+            >
+              Nada encontrado :(
+            </Animatable.Text>
+          )}
         </Content>
       </Main>
     </ScrollView>
@@ -197,5 +208,11 @@ const style = StyleSheet.create({
     backgroundColor: "#2B5C82",
     padding: 10,
     marginBottom: 25,
+  },
+  TextResultRepository: {
+    fontSize: 22,
+    color: "#CCC",
+    marginTop: 30,
+    marginBottom: 45,
   },
 });

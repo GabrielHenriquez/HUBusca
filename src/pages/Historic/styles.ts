@@ -17,7 +17,9 @@ export const CaracteresWhite = styled.Text`
   color: #FFF !important;
 `;
 
-export const ButtonProfile = styled.TouchableOpacity``;
+export const ButtonProfile = styled.TouchableOpacity`
+  width: 100%;
+`;
 
 export const AreaInformations = styled.View`
     justify-content: center;
@@ -60,7 +62,7 @@ export const IconMap = styled.Image`
 
 export const Location = styled.Text`
   color: #FFF !important;
-  font-size: 16px;
+  font-size: 15px;
   opacity: 0.9;
 `;
 

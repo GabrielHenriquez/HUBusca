@@ -83,7 +83,7 @@ export function Result() {
 
 const style = StyleSheet.create({
   TitleLogo: {
-    color: "#53a9d7",
+    color: "#6190C8",
     fontSize: 62,
     fontWeight: "bold",
     marginBottom: 50,

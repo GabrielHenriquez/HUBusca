@@ -96,14 +96,18 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   const setUsersAsyncStorage = async (objUser: UsersProps) => {
     if (objUser) {
-      const response = await AsyncStorage.getItem("@users") || '{}';
+
+      // Obtém os dados que estão no asyncStorage
+      const response = (await AsyncStorage.getItem("@users")) || "{}";
       const res = JSON.parse(response);
 
+      // Cria um array para armazenar os dados vindo do asyncStorage
       let usersInToAsync: any[] = [];
 
-      if (res === null || res.length === 0) {
-        usersInToAsync = [objUser];
+      if (res === null || res.length === 0) { // Verifica se tem algum usuário no asynStorage ou se está com array vazio
+        usersInToAsync = [objUser]; // Estando vazio, adiciona o usuário vindo da pesquisa ao array
 
+        //Adiciona o usuário ao asyncStorage e sai do if
         const jsonValue = JSON.stringify(usersInToAsync);
         await AsyncStorage.setItem("@users", jsonValue);
         return;
@@ -114,46 +118,36 @@ export default function UserProvider({ children }: UserProviderProps) {
           (user) => user.name === objUser.name
         );
 
-        if (findUserAtArray) {
+        if (findUserAtArray) {  //Se o usuário for encontrado no array
           const removeUserAtArray = usersInToAsync.filter(
             (user) => user.login !== findUserAtArray.login
           );
 
-          if (removeUserAtArray) {
-            if (removeUserAtArray.length === 0) {
+          if (removeUserAtArray) { // Se o usuário foi removido do array
+            if (removeUserAtArray.length === 0) { // Se não tiver nenhum usuário após a remoção adiciona o usuário vindo da pesquisa ao asyncStorage
               usersInToAsync = [objUser];
 
-              try {
-                const jsonValue = JSON.stringify(usersInToAsync);
-                await AsyncStorage.setItem("@users", jsonValue);
-              } catch (error) {
-                console.log(error);
-              }
-            } else {
+              const jsonValue = JSON.stringify(usersInToAsync);
+              await AsyncStorage.setItem("@users", jsonValue);
+            } else { // Se tiver usuário após a remoção, remove ele e adiciona novamente para voltar ao topo
               usersInToAsync = removeUserAtArray;
               usersInToAsync.push(objUser);
 
-              try {
-                const jsonValue = JSON.stringify(usersInToAsync);
-                await AsyncStorage.setItem("@users", jsonValue);
-              } catch (error) {
-                console.log(error);
-              }
+              const jsonValue = JSON.stringify(usersInToAsync);
+              await AsyncStorage.setItem("@users", jsonValue);
             }
           }
-        } else {
-          let userAsync = [];
-
-          const response = await AsyncStorage.getItem("@users") || '{}';
+        } else {  // Se o usuário não for encontrado obtém o que já tem no asyncStorage e adiciona novamente o usuário vindo da pesquisa
+          const response = (await AsyncStorage.getItem("@users")) || "{}";
           const res = JSON.parse(response);
 
           if (res === null) {
             return;
           } else {
-            userAsync = res;
-            userAsync.push(objUser);
+            usersInToAsync = res;
+            usersInToAsync.push(objUser);
 
-            const jsonValue = JSON.stringify(userAsync);
+            const jsonValue = JSON.stringify(usersInToAsync);
             await AsyncStorage.setItem("@users", jsonValue);
           }
         }

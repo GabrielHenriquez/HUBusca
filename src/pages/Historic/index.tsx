@@ -33,7 +33,8 @@ export function Historic() {
   const { getUser, getRepositories } = useContext(UserContext);
   const [users, setUsers] = useState<UsersProps[]>([]);
 
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   // Functions
   const getInformationUser = async (user?: string) => {
@@ -117,33 +118,35 @@ export function Historic() {
 
           {users.length > 0 &&
             users.map((user) => (
-              <Animatable.View
-                animation="fadeInUp"
-                delay={900}
-                style={style.ContentUsers}
+              <ButtonProfile
                 key={user.login}
+                onPress={() => getInformationUser(user.login)}
               >
-                <ButtonProfile onPress={() => getInformationUser(user.login)}>
+                <Animatable.View
+                  animation="fadeInUp"
+                  delay={900}
+                  style={style.ContentUsers}
+                >
                   <ProfileImage
                     source={{
                       uri: `${user.avatar_url}.`,
                     }}
                   />
-                </ButtonProfile>
 
-                <AreaInformations>
-                  <Name>{user.name ? user.name : "Nome vazio"}</Name>
+                  <AreaInformations>
+                    <Name>{user.name ? user.name : "Nome vazio"}</Name>
 
-                  <User>{user.login}</User>
+                    <User>{user.login}</User>
 
-                  <AreaLocation>
-                    <IconMap source={require("../../../assets/mapa.png")} />
-                    <Location>
-                      {user.location ? user.location : "Sem localização"}
-                    </Location>
-                  </AreaLocation>
-                </AreaInformations>
-              </Animatable.View>
+                    <AreaLocation>
+                      <IconMap source={require("../../../assets/mapa.png")} />
+                      <Location>
+                        {user.location ? user.location : "Sem localização"}
+                      </Location>
+                    </AreaLocation>
+                  </AreaInformations>
+                </Animatable.View>
+              </ButtonProfile>
             ))}
 
           {users.length === (0 as number) && (
