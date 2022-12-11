@@ -98,7 +98,7 @@ export default function UserProvider({ children }: UserProviderProps) {
     if (objUser) {
 
       // Obtém os dados que estão no asyncStorage
-      const response = (await AsyncStorage.getItem("@users")) || "{}";
+      const response = (await AsyncStorage.getItem("@users")) || "[]";
       const res = JSON.parse(response);
 
       // Cria um array para armazenar os dados vindo do asyncStorage
@@ -138,7 +138,7 @@ export default function UserProvider({ children }: UserProviderProps) {
             }
           }
         } else {  // Se o usuário não for encontrado obtém o que já tem no asyncStorage e adiciona novamente o usuário vindo da pesquisa
-          const response = (await AsyncStorage.getItem("@users")) || "{}";
+          const response = (await AsyncStorage.getItem("@users")) || "[]";
           const res = JSON.parse(response);
 
           if (res === null) {
