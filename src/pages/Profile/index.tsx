@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { ScrollView, Linking } from "react-native";
+import { ScrollView, Linking, StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
 import {
   Main,
   Content,
-  TitleLogo,
-  ProfileImage,
   CaracteresWhite,
   Name,
   User,
@@ -16,98 +15,183 @@ import {
   IconUsers,
   Network,
   Repositories,
-  Line,
-  TitleAreaRepositories,
-  AreaRepositorie,
   TitleRepositorie,
   Description,
   AreaLanguage,
   Circle,
   Language,
-  Date
-
+  Date,
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
 
 export function Profile() {
   // States or Contexts
-  const { user, repository } = useContext(UserContext)
+  const { user, repository } = useContext(UserContext);
 
   // Functions
   const getColor = (language: string) => {
-    if (language === null) return { backgroundColor: '#ffffff' }
-    if (language === 'TypeScript') return { backgroundColor: '#3d97f8' }
-    if (language === 'JavaScript') return { backgroundColor: '#f1e05a' }
-    if (language === 'Java') return { backgroundColor: '#b07219' }
-    if (language === 'HTML') return { backgroundColor: '#e34c26' }
-    if (language === 'Vue') return { backgroundColor: '#47c58c' }
-    if (language === 'Dart') return { backgroundColor: '#09c4ba' }
-    if (language === 'C#') return { backgroundColor: '#178600' }
-    if (language === 'CSS') return { backgroundColor: '#815db6' }
-    if (language === 'PHP') return { backgroundColor: '#5a69a5' }
-    if (language === 'Python') return { backgroundColor: '#d32418' }
+    if (language === null) return { backgroundColor: "#ffffff" };
+    if (language === "TypeScript") return { backgroundColor: "#3d97f8" };
+    if (language === "JavaScript") return { backgroundColor: "#f1e05a" };
+    if (language === "Java") return { backgroundColor: "#b07219" };
+    if (language === "HTML") return { backgroundColor: "#e34c26" };
+    if (language === "Vue") return { backgroundColor: "#47c58c" };
+    if (language === "Dart") return { backgroundColor: "#09c4ba" };
+    if (language === "C#") return { backgroundColor: "#178600" };
+    if (language === "CSS") return { backgroundColor: "#815db6" };
+    if (language === "PHP") return { backgroundColor: "#5a69a5" };
+    if (language === "Python") return { backgroundColor: "#d32418" };
   };
 
   // Aplication
   return (
-    <ScrollView style={{ backgroundColor: '#242937' }}>
+    <ScrollView style={{ backgroundColor: "#242937" }}>
       <Main>
         <Content>
-          <TitleLogo>HUB<CaracteresWhite>usca</CaracteresWhite></TitleLogo>
+          <Animatable.Text
+            animation="fadeInLeft"
+            delay={490}
+            style={style.TitleLogo}
+          >
+            HUB<CaracteresWhite>usca</CaracteresWhite>
+          </Animatable.Text>
 
-          <ProfileImage
+          <Animatable.Image
+            animation="fadeInLeft"
+            delay={650}
+            style={style.ProfileImage}
             source={{
               uri: `${user.avatar_url}`,
             }}
           />
 
-          <Name>{user.name ? user.name : 'Nome vazio'}</Name>
+          <Animatable.View
+            animation="fadeInLeft"
+            delay={720}
+            style={style.AreaInformations}
+          >
+            <Name>{user.name ? user.name : "Nome vazio"}</Name>
 
-          <User>{user.login}</User>
+            <User>{user.login}</User>
 
-          <AreaLocation>
-            <IconMap source={require('../../../assets/mapa.png')} />
-            <Location>{user.location ? user.location : 'Sem localização'}</Location>
-          </AreaLocation>
+            <AreaLocation>
+              <IconMap source={require("../../../assets/mapa.png")} />
+              <Location>
+                {user.location ? user.location : "Sem localização"}
+              </Location>
+            </AreaLocation>
 
-          <ID>ID: {user.id}</ID>
+            <ID>ID: {user.id}</ID>
 
-          <AreaNetwork>
-            <IconUsers source={require('../../../assets/group.png')} />
-            <Network>{user.following} seguidores / {user.following} seguindo</Network>
-          </AreaNetwork>
+            <AreaNetwork>
+              <IconUsers source={require("../../../assets/group.png")} />
+              <Network>
+                {user.following} seguidores / {user.following} seguindo
+              </Network>
+            </AreaNetwork>
 
-          <Repositories>{user.public_repos} Repositórios públicos</Repositories>
+            <Repositories>
+              {user.public_repos} Repositórios públicos
+            </Repositories>
+          </Animatable.View>
 
-          <Line />
+          <Animatable.View
+            animation="fadeInLeft"
+            delay={760}
+            style={style.Line}
+          />
 
-          <TitleAreaRepositories>Repositórios</TitleAreaRepositories>
+          <Animatable.Text
+            animation="fadeInUp"
+            delay={900}
+            style={style.TitleAreaRepositories}
+          >
+            Repositórios
+          </Animatable.Text>
 
-          {repository && repository.map(repo => (
-            <AreaRepositorie key={repo.name}>
-              <TitleRepositorie
-                onPress={() => {
-                  Linking.openURL(`${repo.html_url}`);
-                }}>
-                {repo.name}
-              </TitleRepositorie>
+          {repository &&
+            repository.map((repo) => (
+              <Animatable.View
+                animation="fadeInUp"
+                delay={900}
+                style={style.AreaRepositorie}
+                key={repo.name}
+              >
+                <TitleRepositorie
+                  onPress={() => {
+                    Linking.openURL(`${repo.html_url}`);
+                  }}
+                >
+                  {repo.name}
+                </TitleRepositorie>
 
-              <Description>{repo.description ? repo.description : 'Sem descrição'}</Description>
+                <Description>
+                  {repo.description ? repo.description : "Sem descrição"}
+                </Description>
 
-              <AreaLanguage>
-                <Circle style={getColor(repo.language)} />
-                <Language>{repo.language ? repo.language : 'Sem linguagem'}</Language>
-              </AreaLanguage>
+                <AreaLanguage>
+                  <Circle style={getColor(repo.language)} />
+                  <Language>
+                    {repo.language ? repo.language : "Sem linguagem"}
+                  </Language>
+                </AreaLanguage>
 
-              <Date>Criado em {repo.created_at ? repo.created_at : '--/--/----'}</Date>
-              <Date>Último push em {repo.pushed_at ? repo.pushed_at : '--/--/----'}</Date>
-            </AreaRepositorie>
-          ))}
+                <Date>
+                  Criado em {repo.created_at ? repo.created_at : "--/--/----"}
+                </Date>
+                <Date>
+                  Último push em{" "}
+                  {repo.pushed_at ? repo.pushed_at : "--/--/----"}
+                </Date>
+              </Animatable.View>
+            ))}
         </Content>
       </Main>
-    </ScrollView >
-
-
-  )
+    </ScrollView>
+  );
 }
+
+const style = StyleSheet.create({
+  TitleLogo: {
+    color: "#6190C8",
+    fontSize: 37,
+    fontWeight: "bold",
+    marginTop: 37,
+    marginBottom: 35,
+    letterSpacing: -1,
+  },
+  ProfileImage: {
+    width: 87,
+    height: 87,
+    borderColor: "#7dbfe4",
+    borderWidth: 4,
+    borderStyle: "solid",
+    borderRadius: 300,
+    marginBottom: 15,
+  },
+  TitleAreaRepositories: {
+    color: "#8CD6FF",
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  AreaInformations: {
+    display: "flex",
+    alignItems: "center",
+  },
+  Line: {
+    backgroundColor: "#FFF",
+    width: "100%",
+    height: 4,
+    marginTop: 30,
+    marginBottom: 25,
+  },
+  AreaRepositorie: {
+    width: "100%",
+    borderRadius: 10,
+    backgroundColor: "#2B5C82",
+    padding: 10,
+    marginBottom: 25,
+  },
+});

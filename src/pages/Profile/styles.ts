@@ -13,28 +13,8 @@ export const Content = styled.View`
   height: 100%;
 `;
 
-export const TitleLogo = styled.Text`
-  display: flex;
-  align-self: center;
-  color: #6190C8;
-  font-size: 36px;
-  font-weight: bold;
-  font-style: italic;
-  margin-top: 37px;
-  margin-bottom: 35px;
-  letter-spacing: -1px;
-`;
-
 export const CaracteresWhite = styled.Text`
   color: #FFF !important;
-`;
-
-export const ProfileImage = styled.Image`
-  width: 85px;
-  height: 85px;
-  border: 4px solid #6A98CE;
-  border-radius: 300px;
-  margin-bottom: 15px;
 `;
 
 export const Name = styled.Text`
@@ -100,29 +80,6 @@ export const Repositories = styled.Text`
   color: #FFF !important;
   font-size: 16px;
   opacity: 0.9;
-`;
-
-export const Line = styled.View`
-  background-color: #FFF;
-  width: 100%;
-  height: 4px;
-  margin-top: 30px;
-  margin-bottom: 25px;
-`;
-
-export const TitleAreaRepositories = styled.Text`
-  color: #88BCF9 !important;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
-
-export const AreaRepositorie = styled.View`
- width: 100%;
-  border-radius: 10px;
-  background-color: #2B5C82;
-  padding: 10px;
-  margin-bottom: 25px;
 `;
 
 export const TitleRepositorie = styled.Text`

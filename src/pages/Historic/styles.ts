@@ -13,52 +13,22 @@ export const Content = styled.View`
   height: 100%;
 `;
 
-export const TitleLogo = styled.Text`
-  display: flex;
-  align-self: center;
-  color: #6190C8;
-  font-size: 36px;
-  font-weight: bold;
-  margin-top: 37px;
-  margin-bottom: 35px;
-  letter-spacing: -1px;
-`;
-
-export const Title = styled.Text`
-  color: #C2CAEB !important;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 30px;
-`;
-
 export const CaracteresWhite = styled.Text`
   color: #FFF !important;
 `;
 
-export const ContentUsers = styled.View`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  border-radius: 15px;
-  background-color: #224467;
-  margin-bottom: 15px;
-  padding: 10px;
-`;
+export const ButtonProfile = styled.TouchableOpacity``;
 
-export const ButtonProfile = styled.TouchableOpacity`
-
+export const AreaInformations = styled.View`
+    justify-content: center;
+    margin-left: 10px;
 `;
 
 export const ProfileImage = styled.Image`
   width: 76px;
   height: 76px;
-  border: 4px solid #6A98CE;
+  border: 4px solid #53a9d7;
   border-radius: 300px;
-`;
-
-export const AreaInformations = styled.View`
-  justify-content: center;
-  margin-left: 10px;
 `;
 
 export const Name = styled.Text`

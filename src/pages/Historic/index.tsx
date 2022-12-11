@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import * as Animatable from "react-native-animatable";
+import { useNavigation } from "@react-navigation/native";
+
 import {
   Main,
   Content,
-  TitleLogo,
   CaracteresWhite,
-  Title,
-  ContentUsers,
   ButtonProfile,
-  ProfileImage,
   AreaInformations,
+  ProfileImage,
   Name,
   User,
   AreaLocation,
@@ -20,9 +21,6 @@ import {
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
-
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
 
 import { RootStackParamList } from "../../routes/app.routes";
 
@@ -102,14 +100,30 @@ export function Historic() {
     <ScrollView style={{ backgroundColor: "#242937" }}>
       <Main>
         <Content>
-          <TitleLogo>
+          <Animatable.Text
+            animation="fadeInLeft"
+            delay={500}
+            style={style.TitleLogo}
+          >
             HUB<CaracteresWhite>usca</CaracteresWhite>
-          </TitleLogo>
-          <Title>Usuários pesquisados</Title>
+          </Animatable.Text>
+
+          <Animatable.Text
+            animation="fadeInLeft"
+            delay={600}
+            style={style.Title}
+          >
+            Usuários pesquisados
+          </Animatable.Text>
 
           {users.length > 0 &&
             users.map((user) => (
-              <ContentUsers>
+              <Animatable.View
+                animation="fadeInUp"
+                delay={900}
+                style={style.ContentUsers}
+                key={user.login}
+              >
                 <ButtonProfile onPress={() => getInformationUser(user.login)}>
                   <ProfileImage
                     source={{
@@ -130,7 +144,7 @@ export function Historic() {
                     </Location>
                   </AreaLocation>
                 </AreaInformations>
-              </ContentUsers>
+              </Animatable.View>
             ))}
 
           {users.length === (0 as number) && (
@@ -141,3 +155,29 @@ export function Historic() {
     </ScrollView>
   );
 }
+
+const style = StyleSheet.create({
+  TitleLogo: {
+    color: "#6190C8",
+    fontSize: 37,
+    fontWeight: "bold",
+    marginTop: 37,
+    marginBottom: 35,
+    letterSpacing: -1,
+  },
+  Title: {
+    color: "#8CDBFF",
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 30,
+  },
+  ContentUsers: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    borderRadius: 15,
+    backgroundColor: "#224467",
+    marginBottom: 15,
+    padding: 10,
+  },
+});

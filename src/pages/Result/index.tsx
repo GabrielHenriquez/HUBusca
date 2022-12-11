@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../routes/app.routes";
+import * as Animatable from "react-native-animatable";
 
 import {
-  TituloLogo,
   CaracteresWhite,
   Main,
   ProfileImage,
@@ -18,7 +19,6 @@ import {
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
-import { TouchableOpacity } from "react-native";
 
 export function Result() {
   // States or Contexts
@@ -43,29 +43,53 @@ export function Result() {
         </ScreenLoading>
       ) : (
         <Main>
-          <TituloLogo>
+          <Animatable.Text
+            animation="fadeInLeft"
+            delay={600}
+            style={style.TitleLogo}
+          >
             HUB<CaracteresWhite>usca</CaracteresWhite>
-          </TituloLogo>
+          </Animatable.Text>
 
-          <TouchableOpacity onPress={() => handleProfile()}>
-            <ProfileImage
-              source={{
-                uri: `${user.avatar_url}.`,
-              }}
-            />
-          </TouchableOpacity>
+          <Animatable.View
+            animation="fadeInUp"
+            delay={900}
+            style={style.AreaInformation}
+          >
+            <TouchableOpacity onPress={() => handleProfile()}>
+              <ProfileImage
+                source={{
+                  uri: `${user.avatar_url}.`,
+                }}
+              />
+            </TouchableOpacity>
 
-          <Name>{user.name ? user.name : "Nome vazio"}</Name>
-          <User>{user.login}</User>
+            <Name>{user.name ? user.name : "Nome vazio"}</Name>
+            <User>{user.login}</User>
 
-          <AreaLocation>
-            <IconMap source={require("../../../assets/mapa.png")} />
-            <Location>
-              {user.location ? user.location : "Sem localização"}
-            </Location>
-          </AreaLocation>
+            <AreaLocation>
+              <IconMap source={require("../../../assets/mapa.png")} />
+              <Location>
+                {user.location ? user.location : "Sem localização"}
+              </Location>
+            </AreaLocation>
+          </Animatable.View>
         </Main>
       )}
     </Main>
   );
 }
+
+const style = StyleSheet.create({
+  TitleLogo: {
+    color: "#53a9d7",
+    fontSize: 62,
+    fontWeight: "bold",
+    marginBottom: 50,
+    letterSpacing: -1,
+  },
+  AreaInformation: {
+    display: "flex",
+    alignItems: "center",
+  },
+});

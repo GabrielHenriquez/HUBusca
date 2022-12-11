@@ -21,15 +21,6 @@ export const Main = styled.View`
   height: 100%;
 `;
 
-export const TituloLogo = styled.Text`
-  color: #6190C8;
-  font-size: 60px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 50px;
-  letter-spacing: -1px;
-`;
-
 export const CaracteresWhite = styled.Text`
   color: #FFF !important;
 `;
