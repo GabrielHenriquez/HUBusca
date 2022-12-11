@@ -65,9 +65,3 @@ export const Location = styled.Text`
   font-size: 15px;
   opacity: 0.9;
 `;
-
-export const TextResultHistoric = styled.Text`
-  font-size: 27px;
-  color: #CCC;
-  margin-top: 140px;
-`;

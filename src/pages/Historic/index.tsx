@@ -17,7 +17,6 @@ import {
   AreaLocation,
   IconMap,
   Location,
-  TextResultHistoric,
 } from "./styles";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -150,7 +149,11 @@ export function Historic() {
             ))}
 
           {users.length === (0 as number) && (
-            <TextResultHistoric>Nada encontrado :(</TextResultHistoric>
+            <Animatable.Text
+            animation="fadeInUp"
+            delay={900}
+            style={style.TextResultHistoric}
+            >Nada encontrado :(</Animatable.Text>
           )}
         </Content>
       </Main>
@@ -182,4 +185,9 @@ const style = StyleSheet.create({
     marginBottom: 15,
     padding: 10,
   },
+  TextResultHistoric: {
+    fontSize: 27,
+    color: "#CCC",
+    marginTop: 140
+  }
 });
