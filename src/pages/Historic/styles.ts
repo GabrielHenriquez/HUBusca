@@ -19,6 +19,7 @@ export const CaracteresWhite = styled.Text`
 
 export const ButtonProfile = styled.TouchableOpacity`
   width: 100%;
+  height: 100%;
 `;
 
 export const AreaInformations = styled.View`
