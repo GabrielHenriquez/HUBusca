@@ -36,26 +36,34 @@ export const CaracteresWhite = styled.Text`
 `;
 
 export const ContentUsers = styled.View`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
   border-radius: 15px;
   background-color: #224467;
-  justify-content: center;
-  align-items: center; 
-  width: 100%;
   margin-bottom: 15px;
-  padding: 12px;
+  padding: 10px;
+`;
+
+export const ButtonProfile = styled.TouchableOpacity`
+
 `;
 
 export const ProfileImage = styled.Image`
-  width: 72px;
-  height: 72px;
+  width: 76px;
+  height: 76px;
   border: 4px solid #6A98CE;
   border-radius: 300px;
-  margin-bottom: 12px;
+`;
+
+export const AreaInformations = styled.View`
+  justify-content: center;
+  margin-left: 10px;
 `;
 
 export const Name = styled.Text`
   color: #FFF !important;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 3px;
 `;

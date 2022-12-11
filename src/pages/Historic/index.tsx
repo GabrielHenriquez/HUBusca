@@ -8,7 +8,9 @@ import {
   CaracteresWhite,
   Title,
   ContentUsers,
+  ButtonProfile,
   ProfileImage,
+  AreaInformations,
   Name,
   User,
   AreaLocation,
@@ -79,17 +81,15 @@ export function Historic() {
       })
       .catch((error) => {
         if (error.response.status === 500) alert("Erro ao fazer a requisição");
-      })
+      });
   };
 
   const getUsers = async () => {
     const jsonValue = await AsyncStorage.getItem("@users");
     const arrUsers = JSON.parse(jsonValue);
 
-    console.log('Users AsyncStorage:', arrUsers)
-
-    if(arrUsers === null) return
-    arrUsers.reverse()
+    if (arrUsers === null) return;
+    arrUsers.reverse();
     setUsers(arrUsers);
   };
 
@@ -110,26 +110,26 @@ export function Historic() {
           {users.length > 0 &&
             users.map((user) => (
               <ContentUsers>
-                <TouchableOpacity
-                  onPress={() => getInformationUser(user.login)}
-                >
+                <ButtonProfile onPress={() => getInformationUser(user.login)}>
                   <ProfileImage
                     source={{
                       uri: `${user.avatar_url}.`,
                     }}
                   />
-                </TouchableOpacity>
+                </ButtonProfile>
 
-                <Name>{user.name ? user.name : "Nome vazio"}</Name>
+                <AreaInformations>
+                  <Name>{user.name ? user.name : "Nome vazio"}</Name>
 
-                <User>{user.login}</User>
+                  <User>{user.login}</User>
 
-                <AreaLocation>
-                  <IconMap source={require("../../../assets/mapa.png")} />
-                  <Location>
-                    {user.location ? user.location : "Sem localização"}
-                  </Location>
-                </AreaLocation>
+                  <AreaLocation>
+                    <IconMap source={require("../../../assets/mapa.png")} />
+                    <Location>
+                      {user.location ? user.location : "Sem localização"}
+                    </Location>
+                  </AreaLocation>
+                </AreaInformations>
               </ContentUsers>
             ))}
 
