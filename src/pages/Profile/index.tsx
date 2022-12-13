@@ -92,7 +92,7 @@ export function Profile() {
             <AreaNetwork>
               <IconUsers source={require("../../../assets/group.png")} />
               <Network>
-                {user.following} seguidores / {user.following} seguindo
+                {user.followers} seguidores / {user.following} seguindo
               </Network>
             </AreaNetwork>
 
